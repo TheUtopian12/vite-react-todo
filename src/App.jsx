@@ -1,30 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "./components/Header";
 import TodoCreate from "./components/TodoCreate";
 import TodoList from "./components/TodoList";
 import TodoComputed from "./components/TodoComputed";
 import TodoFilter from "./components/TodoFilter";
 
-const initialStateTodos = [
-  {
-    id: 1,
-    title: "Go to the gym",
-    completed: true,
-  },
-  {
-    id: 2,
-    title: "Complete course",
-    completed: false,
-  },
-  {
-    id: 3,
-    title: "Go to the store",
-    completed: false,
-  },
-];
+const initialStateTodos = JSON.parse(localStorage.getItem("todos")) || [];
 
 const App = () => {
   const [todos, setTodos] = useState(initialStateTodos);
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
 
   const createTodo = (title) => {
     const newTodo = {
@@ -55,7 +42,10 @@ const App = () => {
   return (
     <div
       className="bg-[url('./assets/images/bg-mobile-light.jpg')] 
-    bg-no-repeat bg-contain min-h-screen bg-gray-300"
+      dark:bg-[url('./assets/images/bg-mobile-dark.jpg')] 
+    bg-no-repeat bg-contain min-h-screen bg-gray-300 dark:bg-gray-900
+    
+    "
     >
       <Header />
       <main className="container mx-auto px-4 mt-8 ">

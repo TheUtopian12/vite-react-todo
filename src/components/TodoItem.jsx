@@ -5,7 +5,7 @@ const TodoItem = ({ todo, removeTodo, updateTodo }) => {
   return (
     <article
       className="flex items-center justify-between gap-4 py-4 
-          border-b border-b-gray-400 px-4"
+          border-b border-b-gray-400 px-4 dark:bg-gray-800"
     >
       <button
         className={`${
@@ -17,7 +17,7 @@ const TodoItem = ({ todo, removeTodo, updateTodo }) => {
       >
         {todo.completed && <CheckIcon />}
       </button>
-      <p className="text-gray-600">{todo.title}</p>
+      <p className="text-gray-600 dark:text-gray-400">{todo.title}</p>
       <button className="flex-none" onClick={() => removeTodo(todo.id)}>
         <CrossIcon />
       </button>
